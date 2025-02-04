@@ -14,7 +14,7 @@ export const featuresData: Array<{
 }> = [
   {
     icon: BookOpen,
-    title: "Expert-Led Training",
+    title: "8 Lectures",
     description:
       "Learn directly from industry professionals with years of experience",
   },
@@ -32,7 +32,7 @@ export const featuresData: Array<{
   },
   {
     icon: Clock,
-    title: "1 Lecture weekly for 8 weeks",
+    title: "1 Lecture weekly",
     description: "Learn at your own pace with both live and recorded sessions",
   },
   {
@@ -42,7 +42,7 @@ export const featuresData: Array<{
   },
   {
     icon: LucideFileWarning,
-    title: "Support",
+    title: "Student Portal",
     description: "Get support from our team and community",
   },
 ];
