@@ -6,9 +6,9 @@ export type InstructorType = {
 };
 
 export const instructor: InstructorType = {
-  name: "John Doe",
-  title: "Lead Instructor",
-  image: "https://picsum.photos/200/300",
+  name: "Dr. Ahmed Ibrahim",
+  title: "HR Director at Alsalam International Hospital",
+  image: "/images/ai",
   content: "John Doe is a highly experienced instructor with over 10 years of experience in the field of web development. He has a strong passion for teaching and has helped numerous students achieve their goals.",
 };
 

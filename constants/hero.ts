@@ -4,6 +4,6 @@ type HeroType = {
 };
 
 export const heroData: HeroType = {
-  title: "Transform Your Career",
-  videoUrl: "https://www.youtube.com/watch?v=qlW9NqvE3bU",
+  title: "Healthcare HR Management Diploma",
+  videoUrl: "https://www.youtube.com/watch?v=RDlK4QkeqLg",
 };

@@ -20,24 +20,24 @@ export const featuresData: Array<{
   },
   {
     icon: Target,
-    title: "Practical Skills",
+    title: "Online-zoom live",
     description:
       "Gain hands-on experience with real-world projects and case studies",
   },
   {
     icon: Users,
-    title: "Networking",
+    title: "Certified Instructor",
     description:
       "Connect with peers and build valuable professional relationships",
   },
   {
     icon: Clock,
-    title: "Flexible Schedule",
+    title: "1 Lecture weekly for 8 weeks",
     description: "Learn at your own pace with both live and recorded sessions",
   },
   {
     icon: Shield,
-    title: "Certification",
+    title: "International Certification",
     description: "Get certified and increase your job prospects",
   },
   {
