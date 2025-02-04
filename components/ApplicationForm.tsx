@@ -3,8 +3,11 @@ import { Controller, useForm } from "react-hook-form";
 import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
 import PhoneNumberInput from "./phoneNumberInput";
+import { useState } from "react";
 
-export function ApplicationForm() {
+const ApplicationForm: React.FC<{ close: () => void }> = ({ close }) => {
+  const [loading, setLoading] = useState(false);
+
   const {
     control,
     handleSubmit,
@@ -16,13 +19,47 @@ export function ApplicationForm() {
       program: "",
     },
   });
-  const onSubmit = async (data: {
+
+  async function onSubmit(data: {
     name: string;
     phone: string;
     program: string;
-  }) => {
-    console.log("🚀 ~ onSubmit ~ data:", data);
-  };
+  }) {
+    setLoading(true);
+    try {
+      console.log("🚀 ~ ApplicationForm ~ data:", data.phone);
+      const response = await fetch("https://sheetdb.io/api/v1/7wwkfi1cusx1s", {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          data: [
+            {
+              name: data.name,
+              phone: data.phone,
+              program: data.program,
+            },
+          ],
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to update data");
+      }
+
+      // const data = await response.json();
+      // console.log(data);
+      // toast.success("Data updated successfully!");
+    } catch (error) {
+      console.error("Error updating data:", error);
+      // toast.error("Failed to update data. Please try again.");
+    } finally {
+      setLoading(false);
+      close();
+    }
+  }
 
   return (
     <form
@@ -107,10 +144,10 @@ export function ApplicationForm() {
         type="submit"
         className="w-full  flex items-center justify-center py-4 px-4 text-sm font-medium text-white bg-gold rounded-md shadow-sm hover:bg-gold/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold/50 transition-all duration-150 ease-in-out"
       >
-        Submit Application
+        {loading ? "Loading..." : "Submit Application"}
       </button>
     </form>
   );
-}
+};
 
 export default ApplicationForm;

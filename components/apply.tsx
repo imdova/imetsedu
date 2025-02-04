@@ -22,7 +22,7 @@ const ApplySection = () => {
         </button>
       </div>
       <Modal onClose={close} isOpen={isOpen}>
-        <ApplicationForm />
+        <ApplicationForm close={close} />
       </Modal>
     </React.Fragment>
   );
@@ -43,7 +43,7 @@ export const CallToAction: React.FC = () => {
         Apply Now <ChevronRight className="ml-2 h-4 w-4" />
       </button>
       <Modal onClose={close} isOpen={isOpen}>
-        <ApplicationForm />
+        <ApplicationForm close={close} />
       </Modal>
     </React.Fragment>
   );
