@@ -13,7 +13,7 @@ const Collapsible: React.FC<CollapsibleProps> = ({ title, children }) => {
   return (
     <div className="border group rounded-lg  overflow-hidden">
       <button
-        className="w-full text-left border-b px-4 py-3 flex justify-between items-center transition"
+        className="w-full text-left border-b bg-white px-4 py-3 flex justify-between items-center transition"
         onClick={() => setIsOpen(!isOpen)}
       >
         <span className="font-bold  ">{title}</span>
@@ -24,7 +24,9 @@ const Collapsible: React.FC<CollapsibleProps> = ({ title, children }) => {
         />
       </button>
       <div
-        className={`transition-[max-height] duration-300 ease-in-out overflow-hidden ${isOpen ? "max-h-96" : "max-h-0"}`}
+        className={`transition-[max-height] duration-300 ease-in-out overflow-hidden ${
+          isOpen ? "max-h-96" : "max-h-0"
+        }`}
       >
         <div className="p-4 bg-white">{children}</div>
       </div>

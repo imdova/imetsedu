@@ -56,7 +56,7 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
               ${error ? "text-red-600" : "text-gray-500"}
             `}
           >
-            {error || helperText}
+            {helperText}
           </p>
         )}
       </div>
@@ -67,4 +67,3 @@ const CustomInput = forwardRef<HTMLInputElement, CustomInputProps>(
 CustomInput.displayName = "CustomInput";
 
 export default CustomInput;
-

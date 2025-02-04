@@ -5,5 +5,5 @@ type HeroType = {
 
 export const heroData: HeroType = {
   title: "Transform Your Career",
-  videoUrl: "https://www.youtube.com/embed/qlW9NqvE3bU",
+  videoUrl: "https://www.youtube.com/watch?v=qlW9NqvE3bU",
 };

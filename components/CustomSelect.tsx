@@ -16,20 +16,23 @@ interface CustomSelectProps
 }
 
 const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
-  ({ 
-    label, 
-    options, 
-    error, 
-    helperText, 
-    className, 
-    value: controlledValue, 
-    onChange,
-    placeholder,
-    ...props 
-  }, ref) => {
+  (
+    {
+      label,
+      options,
+      error,
+      helperText,
+      className,
+      value: controlledValue,
+      onChange,
+      placeholder,
+      ...props
+    },
+    ref
+  ) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Option | null>(
-      options.find(opt => opt.value === controlledValue) || null
+      options.find((opt) => opt.value === controlledValue) || null
     );
     const selectContainerRef = useRef<HTMLDivElement>(null);
 
@@ -44,9 +47,9 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
         }
       };
 
-      document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener("mousedown", handleClickOutside);
       return () => {
-        document.removeEventListener('mousedown', handleClickOutside);
+        document.removeEventListener("mousedown", handleClickOutside);
       };
     }, []);
 
@@ -56,19 +59,21 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
 
       // Trigger onChange if provided
       if (onChange) {
-        const syntheticEvent = {
-          target: { value: option.value },
-          currentTarget: (ref as React.RefObject<HTMLSelectElement>)?.current,
-        } as React.ChangeEvent<HTMLSelectElement>;
-        onChange(syntheticEvent);
+        onChange({
+          target: {
+            name: props.name,
+            value: option.value,
+          },
+          currentTarget: {
+            name: props.name,
+            value: option.value,
+          },
+        } as React.ChangeEvent<HTMLSelectElement>);
       }
     };
 
     return (
-      <div 
-        ref={selectContainerRef}
-        className="w-full relative"
-      >
+      <div ref={selectContainerRef} className="w-full relative">
         {label && (
           <label
             htmlFor={props.id}
@@ -85,10 +90,11 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
             ${error ? "text-red-900" : "text-gray-900"}
           `}
         >
-          <select 
-            ref={ref} 
-            className="hidden" 
+          <select
+            ref={ref}
+            className="hidden"
             value={controlledValue}
+            onChange={(e) => console.log(e.target.value)}
             {...props}
           >
             {options.map((option) => (

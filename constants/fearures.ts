@@ -3,8 +3,8 @@ import {
   Target,
   Users,
   Clock,
-  Award,
-  TrendingUp,
+  Shield,
+  LucideFileWarning,
 } from "lucide-react";
 
 export const featuresData: Array<{
@@ -36,13 +36,13 @@ export const featuresData: Array<{
     description: "Learn at your own pace with both live and recorded sessions",
   },
   {
-    icon: Award,
+    icon: Shield,
     title: "Certification",
-    description: "Earn an industry-recognized certificate upon completion",
+    description: "Get certified and increase your job prospects",
   },
   {
-    icon: TrendingUp,
-    title: "Career Growth",
-    description: "Access job placement assistance and career coaching",
+    icon: LucideFileWarning,
+    title: "Support",
+    description: "Get support from our team and community",
   },
 ];

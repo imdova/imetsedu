@@ -27,7 +27,7 @@ export function ApplicationForm() {
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
-      className="space-y-6 w-full "
+      className="space-y-6 w-full text-left "
       noValidate
     >
       <div className="flex flex-col space-y-2">
@@ -63,6 +63,8 @@ export function ApplicationForm() {
             placeholder="+20 (10) 0000-0000"
             id="phone"
             type="tel"
+            error={errors.phone?.message}
+            helperText={errors.phone?.message}
           />
         )}
         rules={{
@@ -103,7 +105,7 @@ export function ApplicationForm() {
 
       <button
         type="submit"
-        className="w-full  flex items-center justify-center py-4 px-4 text-sm font-medium text-white bg-primary rounded-md shadow-sm hover:bg-primary/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-primary/50 transition-all duration-150 ease-in-out"
+        className="w-full  flex items-center justify-center py-4 px-4 text-sm font-medium text-white bg-gold rounded-md shadow-sm hover:bg-gold/90 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gold/50 transition-all duration-150 ease-in-out"
       >
         Submit Application
       </button>

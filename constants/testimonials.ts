@@ -4,7 +4,8 @@ export type TestimonialType = {
   role: string;
   media?: string[];
   path?: string[];
-  content: string;
+  userPhoto?: string;
+  content?: string;
 };
 
 export const testimonialsData: TestimonialType[] = [
@@ -12,15 +13,18 @@ export const testimonialsData: TestimonialType[] = [
     id: "1",
     name: "Sarah Johnson",
     role: "Marketing Manager",
-    media: ["/images/testimonial1.png"],
-    content:
-      "This program transformed my career trajectory. The skills I learned were immediately applicable to my work.",
+    media: [
+      "https://templates.mediamodifier.com/64369626a9edfd6d989ad384/fake-whatsapp-message-generator.jpg",
+    ],
+    userPhoto: "https://images.unsplash.com/photo-1494790108377-be9c29b29330",
+    // content:"This program transformed my career trajectory. The skills I learned were immediately applicable to my work.",
   },
   {
     id: "2",
     name: "Michael Chen",
     role: "Software Developer",
-    media: ["/videos/testimonial2.mp4"],
+    // media: ["/videos/testimonial2.mp4"],
+    userPhoto: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d",
     content:
       "The practical approach and expert guidance helped me advance in my field faster than I expected.",
   },
@@ -28,6 +32,7 @@ export const testimonialsData: TestimonialType[] = [
     id: "3",
     name: "Emily Rodriguez",
     role: "Project Manager",
+    userPhoto: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80",
     content:
       "Excellent curriculum and supportive community. I highly recommend this program to anyone looking to grow professionally.",
   },

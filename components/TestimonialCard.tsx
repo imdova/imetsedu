@@ -5,12 +5,20 @@ export const TestimonialCard: React.FC<TestimonialType> = ({
   content,
   name,
   role,
+  userPhoto,
   media, // Renamed from images to media to include both images & videos
 }) => {
   return (
-    <div className="flex flex-col items-center max-w-[800px] mx-auto">
+    <div className="p-2 md:p-4 h-full w-full flex flex-col justify-center items-center max-w-[800px] md:mx-auto bg-white shadow-md rounded-3xl border-gray-100 mx-4 ">
       {/* User Info */}
-      <div className="flex items-center space-x-4 mb-4">
+      <div className="flex justify-start w-full items-center space-x-4 mb-4">
+        <Image
+          src={userPhoto || "/placeholder-avatar.svg"}
+          alt={name}
+          width={50}
+          height={50}
+          className="w-[50px] rounded-full h-auto aspect-square object-cover"
+        />
         <div>
           <h3 className="font-semibold text-sm md:text-base">{name}</h3>
           <p className="text-xs md:text-sm text-gray-600">{role}</p>
@@ -18,30 +26,34 @@ export const TestimonialCard: React.FC<TestimonialType> = ({
       </div>
 
       {/* Testimonial Content */}
-      <p className="text-gray-600 text-xs w-4/5 text-center">{content}</p>
+      {content && (
+        <p className="text-gray-600 text-xs w-4/5 text-center">{content}</p>
+      )}
 
       {/* Media Section */}
-      <div className="flex gap-2 flex-wrap justify-center mt-4">
-        {media?.map((file, index) =>
-          file.endsWith(".mp4") ? (
-            <video
-              key={index}
-              src={file}
-              controls
-              className="w-full max-w-[200px] h-auto aspect-video rounded-lg object-cover"
-            />
-          ) : (
-            <Image
-              key={index}
-              src={file}
-              alt={`${name} media ${index}`}
-              width={80}
-              height={80}
-              className="w-full h-auto rounded-lg object-cover"
-            />
-          )
-        )}
-      </div>
+      {media && media.length > 0 && (
+        <div className="flex gap-2 w-full flex-wrap justify-center ">
+          {media?.map((file, index) =>
+            file.endsWith(".mp4") ? (
+              <video
+                key={index}
+                src={file}
+                controls
+                className="w-full max-w-[200px] h-auto aspect-video rounded-lg object-cover"
+              />
+            ) : (
+              <Image
+                key={index}
+                src={file}
+                alt={`${name} media ${index}`}
+                width={200}
+                height={200}
+                className="w-full max-h-40 max-w-[400px] h-auto rounded-2xl object-cover"
+              />
+            )
+          )}
+        </div>
+      )}
     </div>
   );
 };

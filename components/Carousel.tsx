@@ -44,6 +44,26 @@ export function Carousel<T extends CarouselItem>({
   }, [currentIndex, items.length, scrollToIndex]);
 
   useEffect(() => {
+    const carousel = carouselRef.current;
+    if (!carousel) return;
+
+    const handleScroll = () => {
+      if (!carousel) return;
+      const scrollPosition = carousel.scrollLeft;
+      const carouselWidth = carousel.clientWidth;
+      // Calculate the current index based on scroll position
+      const newIndex = Math.round(scrollPosition / carouselWidth);
+      // Update current index if it has changed
+      if (newIndex !== currentIndex) {
+        setCurrentIndex(newIndex);
+      }
+    };
+
+    carousel.addEventListener("scroll", handleScroll);
+    return () => carousel.removeEventListener("scroll", handleScroll);
+  }, [currentIndex]);
+
+  useEffect(() => {
     if (!isPaused) {
       const interval = setInterval(scrollToNext, autoScrollInterval);
       return () => clearInterval(interval);
@@ -54,20 +74,26 @@ export function Carousel<T extends CarouselItem>({
 
   return (
     <div className={`relative w-full ${className}`}>
-      <div className="absolute left-0 top-0 z-10 flex h-full w-8 md:w-16 items-center justify-center">
+      <div className="absolute left-0 top-0 z-10 flex h-full w-6 md:w-16 items-center justify-center">
         <button
-          onClick={scrollToPrev}
-          className="rounded-full bg-gray-100 p-2 text-gray-700 hover:bg-gray-200"
+          onClick={() => {
+            setIsPaused(false);
+            scrollToPrev();
+          }}
+          className="rounded-full bg-gray-100 p-1 text-gray-700 hover:bg-gray-200"
           aria-label="Previous"
         >
           <ChevronLeft className="w-4 h-4" />
         </button>
       </div>
 
-      <div className="absolute right-0 top-0 z-10 flex h-full w-8 md:w-16 items-center justify-center">
+      <div className="absolute right-0 top-0 z-10 flex h-full w-6 md:w-16 items-center justify-center">
         <button
-          onClick={scrollToNext}
-          className="rounded-full bg-gray-100 p-2 text-gray-700 hover:bg-gray-200"
+          onClick={() => {
+            setIsPaused(false);
+            scrollToNext();
+          }}
+          className="rounded-full bg-gray-100 p-1 text-gray-700 hover:bg-gray-200"
           aria-label="Next"
         >
           <ChevronRight className="w-4 h-4" />
@@ -76,7 +102,7 @@ export function Carousel<T extends CarouselItem>({
 
       <div
         ref={carouselRef}
-        className="overflow-x-hidden w-full snap-x snap-mandatory scroll-smooth"
+        className="overflow-x-auto scroll-bar-hidden w-full snap-x snap-mandatory scroll-smooth pb-4"
         style={{ scrollBehavior: "smooth" }}
       >
         <div className="flex gap-2">
@@ -84,7 +110,10 @@ export function Carousel<T extends CarouselItem>({
             <div
               key={item.id}
               className="snap-center w-full flex-shrink-0 flex justify-center items-center"
-              onClick={() => setIsPaused(true)}
+              onMouseDown={() => setIsPaused(true)}
+              onMouseUp={() => setIsPaused(false)}
+              onMouseOver={() => setIsPaused(true)}
+              onMouseOut={() => setIsPaused(false)}
             >
               {renderItem(item)}
             </div>
@@ -92,11 +121,14 @@ export function Carousel<T extends CarouselItem>({
         </div>
       </div>
 
-      <div className="z-10 flex justify-center mt-4 space-x-2">
+      <div className="z-10 flex justify-center space-x-2">
         {items.map((_, index) => (
           <button
             key={index}
-            onClick={() => scrollToIndex(index)}
+            onClick={() => {
+              setIsPaused(false);
+              scrollToIndex(index);
+            }}
             className={`rounded-full transition-all duration-300 ${
               index === currentIndex
                 ? "bg-gray-700"

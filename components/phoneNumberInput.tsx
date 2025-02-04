@@ -11,9 +11,15 @@ const formatCode = (code: string): string => {
   return code;
 };
 
-const PhoneNumberInput: React.FC<
-  React.InputHTMLAttributes<HTMLInputElement>
-> = (props) => {
+interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
+  label?: string;
+  error?: string | boolean;
+  helperText?: string;
+}
+
+const PhoneNumberInput: React.FC<CustomInputProps> = (props) => {
+  const { error, helperText } = props;
+  console.log("🚀 ~ helperText:", helperText);
   const [countryCode, setCountryCode] = useState<string>("EG"); // Default to Egypt
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
@@ -74,8 +80,8 @@ const PhoneNumberInput: React.FC<
           className="rounded-l-none"
           value={phoneNumber}
           onChange={handlePhoneChange}
-          error={!isValid}
-          helperText={!isValid ? "Invalid phone number" : ""}
+          error={!isValid || !!error}
+          helperText={helperText || !isValid ? "Invalid phone number" : ""}
         />
       </div>
     </div>

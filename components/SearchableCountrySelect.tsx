@@ -97,12 +97,15 @@ const SearchableSelectCountry = forwardRef<
         )}
 
         <div
-          className={`relative w-full ${error ? "text-red-900" : "text-gray-900"}`}
+          className={`relative w-full ${
+            error ? "text-red-900" : "text-gray-900"
+          }`}
         >
           <select
             ref={ref}
             className="hidden"
             value={controlledValue}
+            onChange={(e) => console.log(e.target.value)}
             {...props}
           >
             {options.map((option) => (
@@ -129,7 +132,9 @@ const SearchableSelectCountry = forwardRef<
                     code={selectedOption.value.toLowerCase()}
                     name={selectedOption.label}
                   />{" "}
-                  <span className="line-clamp-1">{selectedOption.phoneCode}</span>
+                  <span className="line-clamp-1">
+                    {selectedOption.phoneCode}
+                  </span>
                 </div>
               ) : (
                 placeholder || "Select an option"
@@ -180,7 +185,9 @@ const SearchableSelectCountry = forwardRef<
 
         {(helperText || error) && (
           <p
-            className={`mt-1 text-xs ${error ? "text-red-600" : "text-gray-500"}`}
+            className={`mt-1 text-xs ${
+              error ? "text-red-600" : "text-gray-500"
+            }`}
           >
             {error || helperText}
           </p>
