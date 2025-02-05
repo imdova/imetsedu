@@ -1,18 +1,21 @@
-import AboutSection from "@/components/AboutSection";
-import ApplySection, { CallToAction } from "@/components/apply";
-import Curriculum from "@/components/Curriculum";
 import Features from "@/components/Features";
 import Header from "@/components/Header";
 import Hero from "@/components/hero";
-import { InstructorCard } from "@/components/instructorCard";
-import Programs from "@/components/programs";
-import Testimonials from "@/components/Testimonials";
-import VideoGrid from "@/components/VideoGrid";
 import { Metadata } from "next";
+import dynamic from "next/dynamic";
 
 export const metadata: Metadata = {
   title: "Healthcare hr management diploma", // This will be shown as "Healthcare hr management diploma | IMETS School of Business"
 };
+const Curriculum = dynamic(() => import("@/components/Curriculum"));
+const InstructorCard = dynamic(() => import("@/components/instructorCard"));
+const Testimonials = dynamic(() => import("@/components/Testimonials"));
+const VideoGrid = dynamic(() => import("@/components/VideoGrid"));
+const AboutSection = dynamic(() => import("@/components/AboutSection"));
+const Programs = dynamic(() => import("@/components/programs"));
+const ApplySection = dynamic(() => import("@/components/apply"));
+const CallToAction = dynamic(() => import("@/components/CallToAction"));
+
 export default function Home() {
   return (
     <div>

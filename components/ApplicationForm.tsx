@@ -13,7 +13,7 @@ interface DynamicModalProps {
   close: () => void;
 }
 
-const DynamicFormModal: React.FC<DynamicModalProps> = ({ close }) => {
+const ApplicationForm: React.FC<DynamicModalProps> = ({ close }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const { showNotification } = useNotification();
@@ -167,4 +167,4 @@ const DynamicFormModal: React.FC<DynamicModalProps> = ({ close }) => {
   );
 };
 
-export default DynamicFormModal;
+export default ApplicationForm;

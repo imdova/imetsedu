@@ -1,7 +1,8 @@
+"use client";
 import { instructor } from "@/constants/instructor";
 import Avatar from "./avatar";
 
-export const InstructorCard: React.FC = () => {
+const InstructorCard: React.FC = () => {
   return (
     <section className="container mx-auto mb-6 p-2 md:p-4 lg:max-w-[1170px]">
       <h2 className="mb-4 text-center text-2xl font-bold md:text-left">
@@ -32,3 +33,5 @@ export const InstructorCard: React.FC = () => {
     </section>
   );
 };
+
+export default InstructorCard;

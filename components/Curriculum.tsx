@@ -1,3 +1,5 @@
+"use client";
+
 import { curriculumData, curriculumSection } from "@/constants/curriculum";
 import Collapsible from "./Collapsible";
 import WaveDiv from "./wavediv";

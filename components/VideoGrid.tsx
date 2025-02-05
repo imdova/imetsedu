@@ -1,3 +1,4 @@
+"use client";
 import { isYouTubeVideo } from "@/util/videos";
 import YouTubePlayer from "./YouTubePlayer";
 import { videoData } from "@/constants/videos";

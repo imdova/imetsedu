@@ -1,3 +1,4 @@
+"use client";
 import { aboutData } from "@/constants/about";
 import WaveDiv from "./wavediv";
 import Avatar from "./avatar";
