@@ -1,25 +1,21 @@
 import { isYouTubeVideo } from "@/util/videos";
 import YouTubePlayer from "./YouTubePlayer";
-import { VideType } from "@/constants/videos";
+import { videoData } from "@/constants/videos";
 
-interface VideoGridProps {
-  videos: VideType[];
-}
-
-const VideoGrid: React.FC<VideoGridProps> = ({ videos }) => {
+const VideoGrid: React.FC = () => {
   return (
-    <div
-      className={`grid  grid-cols-1 sm:grid-cols-2 md:grid-cols-3  gap-4 p-4`}
-    >
-      {videos.map((video) => (
+    <div className="container mx-auto grid grid-cols-1 gap-4 p-2 sm:grid-cols-2 md:grid-cols-3 md:px-4 lg:max-w-[1170px]">
+      {videoData.map((video) => (
         <div key={video.id} className="relative aspect-video cursor-pointer">
           {isYouTubeVideo(video.videoUrl) ? (
-            <YouTubePlayer videoUrl={video.videoUrl} />
+            <div className="aspect-video overflow-hidden rounded-3xl border shadow-simple">
+              <YouTubePlayer videoUrl={video.videoUrl} />
+            </div>
           ) : (
             <video
               src={video.videoUrl}
               controls
-              className="aspect-video border rounded-3xl shadow-md"
+              className="aspect-video rounded-3xl border shadow-simple"
               // className="absolute inset-0 w-full h-full"
             />
           )}

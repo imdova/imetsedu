@@ -2,18 +2,14 @@
 import React, { useState, useRef, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 
-interface CarouselItem {
-  id: string | number;
-}
-
-interface CarouselProps<T extends CarouselItem> {
+interface CarouselProps<T> {
   items: T[];
   renderItem: (item: T) => React.ReactNode;
   autoScrollInterval?: number;
   className?: string;
 }
 
-export function Carousel<T extends CarouselItem>({
+export function Carousel<T>({
   items,
   renderItem,
   autoScrollInterval = 3000,
@@ -74,7 +70,7 @@ export function Carousel<T extends CarouselItem>({
 
   return (
     <div className={`relative w-full ${className}`}>
-      <div className="absolute left-0 top-0 z-10 flex h-full w-6 md:w-16 items-center justify-center">
+      <div className="absolute left-0 top-0 z-10 flex h-full w-6 items-center justify-center md:w-16">
         <button
           onClick={() => {
             setIsPaused(false);
@@ -83,11 +79,11 @@ export function Carousel<T extends CarouselItem>({
           className="rounded-full bg-gray-100 p-1 text-gray-700 hover:bg-gray-200"
           aria-label="Previous"
         >
-          <ChevronLeft className="w-4 h-4" />
+          <ChevronLeft className="h-4 w-4" />
         </button>
       </div>
 
-      <div className="absolute right-0 top-0 z-10 flex h-full w-6 md:w-16 items-center justify-center">
+      <div className="absolute right-0 top-0 z-10 flex h-full w-6 items-center justify-center md:w-16">
         <button
           onClick={() => {
             setIsPaused(false);
@@ -96,20 +92,20 @@ export function Carousel<T extends CarouselItem>({
           className="rounded-full bg-gray-100 p-1 text-gray-700 hover:bg-gray-200"
           aria-label="Next"
         >
-          <ChevronRight className="w-4 h-4" />
+          <ChevronRight className="h-4 w-4" />
         </button>
       </div>
 
       <div
         ref={carouselRef}
-        className="overflow-x-auto scroll-bar-hidden w-full snap-x snap-mandatory scroll-smooth pb-4"
+        className="scroll-bar-hidden w-full snap-x snap-mandatory overflow-x-auto scroll-smooth pb-4 pt-2"
         style={{ scrollBehavior: "smooth" }}
       >
         <div className="flex gap-2">
-          {items.map((item) => (
+          {items.map((item, index) => (
             <div
-              key={item.id}
-              className="snap-center w-full flex-shrink-0 flex justify-center items-center"
+              key={index}
+              className="flex w-full flex-shrink-0 snap-center items-center justify-center"
               onMouseDown={() => setIsPaused(true)}
               onMouseUp={() => setIsPaused(false)}
               onMouseOver={() => setIsPaused(true)}

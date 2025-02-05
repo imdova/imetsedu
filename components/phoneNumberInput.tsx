@@ -17,16 +17,18 @@ interface CustomInputProps extends React.InputHTMLAttributes<HTMLInputElement> {
   helperText?: string;
 }
 
-const PhoneNumberInput: React.FC<CustomInputProps> = (props) => {
-  const { error, helperText } = props;
-  console.log("🚀 ~ helperText:", helperText);
+const PhoneNumberInput: React.FC<CustomInputProps> = ({
+  error,
+  helperText,
+  label,
+  ...props
+}) => {
   const [countryCode, setCountryCode] = useState<string>("EG"); // Default to Egypt
   const [phoneNumber, setPhoneNumber] = useState<string>("");
   const [isValid, setIsValid] = useState<boolean>(true);
 
   const handleCountryChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
     const newCode = event.target.value;
-    console.log("🚀 ~ handleCountryChange ~ newCode:", newCode);
     setCountryCode(newCode);
     validateAndFormatPhone(phoneNumber, newCode);
   };
@@ -40,7 +42,7 @@ const PhoneNumberInput: React.FC<CustomInputProps> = (props) => {
   const validateAndFormatPhone = (input: string, code: string) => {
     const phoneNumberObj = parsePhoneNumberFromString(
       input,
-      code as CountryCode
+      code as CountryCode,
     );
     if (phoneNumberObj && phoneNumberObj.isValid()) {
       // setPhoneNumber(phoneNumberObj.formatInternational());
@@ -60,9 +62,9 @@ const PhoneNumberInput: React.FC<CustomInputProps> = (props) => {
     <div>
       <label
         htmlFor={props.id}
-        className="block text-sm font-medium text-gray-700 mb-1"
+        className="mb-1 block text-sm font-medium text-gray-700"
       >
-        Phone Number
+        {label}
       </label>
       <div className="flex">
         <SearchableSelectCountry

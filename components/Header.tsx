@@ -1,4 +1,6 @@
 "use client";
+import { headerData, pricesData } from "@/constants/header";
+import { createDateFromInput } from "@/util/date";
 import Image from "next/image";
 import { useState, useEffect } from "react";
 
@@ -11,7 +13,7 @@ const Header = () => {
   });
 
   useEffect(() => {
-    const endDate = new Date("2025-02-10T23:59:59");
+    const endDate = createDateFromInput(headerData.endDate);
     const calculateTimeLeft = () => {
       const now = new Date();
       const difference = endDate.getTime() - now.getTime();
@@ -36,9 +38,9 @@ const Header = () => {
   }, []);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 h-[65px] ">
-      <div className=" bg-primary">
-        <div className="container lg:max-w-[1170px] mx-auto px-4  flex gap-2 items-center justify-center p-2">
+    <header className="sticky left-0 right-0 top-0 z-50">
+      <div className="bg-primary">
+        <div className="container mx-auto flex items-center justify-center gap-2 p-2 px-4 lg:max-w-[1170px]">
           <Image
             src="/fast.svg"
             alt="Program Logo"
@@ -47,21 +49,26 @@ const Header = () => {
             className="h-12 w-auto"
             priority
           />
-          <div className="flex text-sm text-center items-center justify-center mt-4">
-            <span className=" text-white">
-              <span className="font-bold">Don&apos;t miss this offer! </span>
-              <span className="line-through text-red-500">
-                <span className="text-white">
-                  $199 <span className="text-sm">EGP</span>
-                </span>
-              </span>
-              {"  "}
-              <strong>$90</strong> for life time access
-              <strong className="text-white text-xs">
-                {" "}
-                {`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s left`}
-              </strong>
-            </span>
+          <div className="text-center">
+            <strong className="text-lg font-medium text-gold">
+              {`${timeLeft.days}d ${timeLeft.hours}h ${timeLeft.minutes}m ${timeLeft.seconds}s left`}
+            </strong>
+            <p className="text-white">
+              <span
+                className="text-sm font-medium"
+                dangerouslySetInnerHTML={{
+                  __html: headerData.content
+                    .replace(
+                      pricesData.oldPrice,
+                      `<del className='text-gray-500'>${pricesData.oldPrice}</del>`,
+                    )
+                    .replace(
+                      pricesData.newPrice,
+                      `<span className='text-green-600 font-bold'>${pricesData.newPrice}</span>`,
+                    ),
+                }}
+              />
+            </p>
           </div>
         </div>
       </div>

@@ -17,6 +17,9 @@ export default {
         primary: "var(--primary)",
         gold: "var(--primary-gold)",
       },
+      boxShadow: {
+        simple: "0 0 10px 0 rgba(0,0,0,0.1)",
+      },
     },
   },
   plugins: [],

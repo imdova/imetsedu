@@ -1,10 +1,6 @@
 import React, { forwardRef, useState, useEffect, useRef } from "react";
 import { ChevronDown, Check } from "lucide-react";
-
-interface Option {
-  value: string;
-  label: string;
-}
+import { Option } from "@/constants/form";
 
 interface CustomSelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {
@@ -28,11 +24,11 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
       placeholder,
       ...props
     },
-    ref
+    ref,
   ) => {
     const [isOpen, setIsOpen] = useState(false);
     const [selectedOption, setSelectedOption] = useState<Option | null>(
-      options.find((opt) => opt.value === controlledValue) || null
+      options.find((opt) => opt.value === controlledValue) || null,
     );
     const selectContainerRef = useRef<HTMLDivElement>(null);
 
@@ -73,22 +69,18 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
     };
 
     return (
-      <div ref={selectContainerRef} className="w-full relative">
+      <div ref={selectContainerRef} className="relative w-full">
         {label && (
           <label
             htmlFor={props.id}
-            className="block text-sm font-medium text-gray-700 mb-1"
+            className="mb-1 block text-sm font-medium text-gray-700"
           >
             {label}
           </label>
         )}
 
         <div
-          className={`
-            relative 
-            w-full 
-            ${error ? "text-red-900" : "text-gray-900"}
-          `}
+          className={`relative w-full ${error ? "text-red-900" : "text-gray-900"} `}
         >
           <select
             ref={ref}
@@ -106,24 +98,11 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
 
           <div
             onClick={() => setIsOpen(!isOpen)}
-            className={`
-              w-full 
-              px-3 
-              py-2 
-              border 
-              rounded-md 
-              text-sm 
-              cursor-pointer 
-              flex 
-              items-center 
-              justify-between
-              ${
-                error
-                  ? "border-red-500 focus:ring-red-500"
-                  : "border-gray-300 focus:border-blue-500"
-              }
-              ${className || ""}
-            `}
+            className={`flex w-full cursor-pointer items-center justify-between rounded-md border px-3 py-2 text-sm ${
+              error
+                ? "border-red-500 focus:ring-red-500"
+                : "border-gray-300 focus:border-blue-500"
+            } ${className || ""} `}
           >
             <span>
               {selectedOption?.label || placeholder || "Select an option"}
@@ -132,33 +111,12 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
           </div>
 
           {isOpen && (
-            <ul
-              className="
-                absolute 
-                z-10 
-                mt-1 
-                w-full 
-                bg-white 
-                border 
-                rounded-md 
-                shadow-lg 
-                max-h-48 
-                overflow-auto
-              "
-            >
+            <ul className="absolute z-10 mt-1 max-h-48 w-full overflow-auto rounded-md border bg-white shadow-lg">
               {options.map((option) => (
                 <li
                   key={option.value}
                   onClick={() => handleOptionSelect(option)}
-                  className="
-                    px-3 
-                    py-2 
-                    hover:bg-gray-100 
-                    cursor-pointer 
-                    flex 
-                    items-center 
-                    justify-between
-                  "
+                  className="flex cursor-pointer items-center justify-between px-3 py-2 hover:bg-gray-100"
                 >
                   {option.label}
                   {selectedOption?.value === option.value && (
@@ -172,18 +130,14 @@ const CustomSelect = forwardRef<HTMLSelectElement, CustomSelectProps>(
 
         {(helperText || error) && (
           <p
-            className={`
-              mt-1 
-              text-xs 
-              ${error ? "text-red-600" : "text-gray-500"}
-            `}
+            className={`mt-1 text-xs ${error ? "text-red-600" : "text-gray-500"} `}
           >
             {error || helperText}
           </p>
         )}
       </div>
     );
-  }
+  },
 );
 
 CustomSelect.displayName = "CustomSelect";

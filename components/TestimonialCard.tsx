@@ -1,5 +1,6 @@
 import { TestimonialType } from "@/constants/testimonials";
 import Image from "next/image";
+import Avatar from "./avatar";
 
 export const TestimonialCard: React.FC<TestimonialType> = ({
   content,
@@ -9,37 +10,37 @@ export const TestimonialCard: React.FC<TestimonialType> = ({
   media, // Renamed from images to media to include both images & videos
 }) => {
   return (
-    <div className="p-2 md:p-4 h-full w-full flex flex-col justify-center items-center max-w-[800px] md:mx-auto bg-white shadow-md rounded-3xl border-gray-100 mx-4 ">
+    <div className="mx-2 flex h-full w-full max-w-[800px] flex-col items-center justify-center rounded-3xl border-gray-100 bg-white p-2 shadow-simple md:mx-auto md:p-4">
       {/* User Info */}
-      <div className="flex justify-start w-full items-center space-x-4 mb-4">
-        <Image
+      <div className="mb-4 flex w-full items-center justify-start space-x-4">
+        <Avatar
           src={userPhoto || "/placeholder-avatar.svg"}
           alt={name}
           width={50}
           height={50}
-          className="w-[50px] rounded-full h-auto aspect-square object-cover"
+          className="aspect-square h-auto w-[50px] rounded-full bg-primary object-cover"
         />
         <div>
-          <h3 className="font-semibold text-sm md:text-base">{name}</h3>
-          <p className="text-xs md:text-sm text-gray-600">{role}</p>
+          <h3 className="text-sm font-semibold md:text-base">{name}</h3>
+          <p className="text-xs text-gray-600 md:text-sm">{role}</p>
         </div>
       </div>
 
       {/* Testimonial Content */}
       {content && (
-        <p className="text-gray-600 text-xs w-4/5 text-center">{content}</p>
+        <p className="w-4/5 text-center text-xs text-gray-600">{content}</p>
       )}
 
       {/* Media Section */}
       {media && media.length > 0 && (
-        <div className="flex gap-2 w-full flex-wrap justify-center ">
+        <div className="flex w-full flex-wrap justify-center gap-2">
           {media?.map((file, index) =>
             file.endsWith(".mp4") ? (
               <video
                 key={index}
                 src={file}
                 controls
-                className="w-full max-w-[200px] h-auto aspect-video rounded-lg object-cover"
+                className="aspect-video h-auto w-full max-w-[200px] rounded-lg object-cover"
               />
             ) : (
               <Image
@@ -48,9 +49,9 @@ export const TestimonialCard: React.FC<TestimonialType> = ({
                 alt={`${name} media ${index}`}
                 width={200}
                 height={200}
-                className="w-full max-h-40 max-w-[400px] h-auto rounded-2xl object-cover"
+                className="h-auto max-h-40 w-full max-w-[400px] rounded-2xl object-cover"
               />
-            )
+            ),
           )}
         </div>
       )}

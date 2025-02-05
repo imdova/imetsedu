@@ -1,5 +1,6 @@
 import { ProgramType } from "@/constants/programs";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const ProgramCard: React.FC<ProgramType> = ({
@@ -8,28 +9,56 @@ const ProgramCard: React.FC<ProgramType> = ({
   duration,
   price,
   image,
+  overImageText,
+  link,
+  features,
 }) => {
   return (
-    <div className="bg-white rounded-lg shadow-md overflow-hidden m-2 max-w-[500px] mx-auto">
+    <div className="m-2 max-w-[500px] overflow-hidden rounded-3xl bg-white shadow-simple md:mx-auto">
       <div className="relative">
         <Image
-          src={image}
+          src={image || ""}
           width={300}
           height={300}
-          className="w-full h-48 object-cover"
+          className="h-48 w-full bg-gold object-cover"
           alt={title}
         />
-        <div className="absolute inset-0 bg-black bg-opacity-25 flex items-center justify-center">
-          <h3 className="text-2xl font-semibold text-white leading-none tracking-tight">
-            {title}
-          </h3>
-        </div>
+        {overImageText && (
+          <div className="absolute inset-0 flex items-center justify-center bg-black bg-opacity-25">
+            <h3 className="text-2xl font-semibold leading-none tracking-tight text-white">
+              {overImageText}
+            </h3>
+          </div>
+        )}
       </div>
-      <div className="p-6">
-        <p className="text-gray-600 mb-4">{description}</p>
+      <div className="p-4">
+        {link ? (
+          <Link
+            href={link}
+            className="focus-visible:ring-secondary-500 text-xl font-semibold hover:underline focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2"
+          >
+            {title}
+          </Link>
+        ) : (
+          <h3 className="text-xl font-semibold">{title}</h3>
+        )}
+        <p className="mb-4 text-sm text-gray-600">{description}</p>
+        {features && features.length > 0 && (
+          <div className="flex flex-wrap gap-2">
+            {features.map((item, index) => {
+              const Icon = item.icon;
+              return (
+                <div key={index} className="flex items-center">
+                  <Icon className="h-4 w-4 text-gold" />
+                  <p className="text-xs text-gray-600">{item.title}</p>
+                </div>
+              );
+            })}
+          </div>
+        )}
         <div className="flex justify-between text-sm text-gray-800">
           <span>Duration: {duration}</span>
-          <span>Price: {price}</span>
+          {price && <span>Price: {price}</span>}
         </div>
       </div>
     </div>

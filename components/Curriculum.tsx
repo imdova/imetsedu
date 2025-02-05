@@ -1,20 +1,25 @@
-import { curriculumData } from "@/constants/curriculum";
+import { curriculumData, curriculumSection } from "@/constants/curriculum";
 import Collapsible from "./Collapsible";
+import WaveDiv from "./wavediv";
 
 const Curriculum = () => {
   return (
-    <section className="container lg:max-w-[1170px] mx-auto px-2 md:px-4">
-      <h2 className="text-2xl text-gold font-bold mb-6 text-center md:text-left">
-        Program curriculum
-      </h2>
-      <div className="space-y-4">
-        {curriculumData.map((item, index) => (
-          <Collapsible key={index} title={item.title}>
-            <p className="text-muted-foreground">{item.content}</p>
-          </Collapsible>
-        ))}
-      </div>
-    </section>
+    <WaveDiv className="mb-4 fill-primary">
+      <section className="w-full bg-primary p-4">
+        <div className="container mx-auto px-2 md:px-4 lg:max-w-[1170px]">
+          <h2 className="mb-6 text-center text-2xl font-bold text-gold md:text-left">
+            {curriculumSection.title}
+          </h2>
+          <div className="space-y-4">
+            {curriculumData.map((item, index) => (
+              <Collapsible key={index} title={item.title}>
+                <p className="text-muted-foreground">{item.content}</p>
+              </Collapsible>
+            ))}
+          </div>
+        </div>
+      </section>
+    </WaveDiv>
   );
 };
 

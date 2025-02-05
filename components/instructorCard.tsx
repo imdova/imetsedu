@@ -1,25 +1,34 @@
 import { instructor } from "@/constants/instructor";
-import Image from "next/image";
+import Avatar from "./avatar";
 
 export const InstructorCard: React.FC = () => {
   return (
-    <div className="flex flex-col items-start p-4 max-w-[500px] md:mx-auto bg-white  border-gold border-dashed border-2 shadow-md rounded-xl m-4 mb-4">
-      <div className="flex items-center space-x-4 mb-4">
-        <Image
-          src={instructor.image}
-          alt={instructor.name}
-          width={80}
-          height={80}
-          className="w-[50px] md:w-[80px] rounded-full aspect-square object-cover"
-        />
-        <div>
-          <h3 className="font-semibold text-sm md:text-base">
-            {instructor.name}
-          </h3>
-          <p className="ms:text-sm text-gray-600 text-xs ">{instructor.name}</p>
+    <section className="container mx-auto mb-6 p-2 md:p-4 lg:max-w-[1170px]">
+      <h2 className="mb-4 text-center text-2xl font-bold md:text-left">
+        {instructor.sectionTitle}
+      </h2>
+      <div className="flex max-w-[500px] flex-col items-start rounded-3xl border-2 border-dashed border-gold bg-white p-4 shadow-md md:mx-auto">
+        <div className="mb-4 flex items-center space-x-4">
+          <Avatar
+            src={instructor.image}
+            alt={instructor.name}
+            width={80}
+            height={80}
+            className="aspect-square max-h-[50px] w-[50px] rounded-full bg-primary object-cover text-gold md:max-h-[80px] md:w-[80px]"
+          />
+          <div>
+            <h3 className="text-sm font-semibold md:text-base">
+              {instructor.name}
+            </h3>
+            <p className="text-xs text-gray-600 sm:text-sm">
+              {instructor.title}
+            </p>
+          </div>
         </div>
+        <p className="text-center text-xs text-gray-600">
+          {instructor.content}
+        </p>
       </div>
-      <p className="text-gray-600 text-xs text-center">{instructor.content}</p>
-    </div>
+    </section>
   );
 };

@@ -1,52 +1,148 @@
-export type ProgramType = {
-  id: number;
+import { BookOpen, Target, Users } from "lucide-react";
+import { FeaturesType } from "./fearures";
+
+export interface ProgramType {
   title: string;
+  slug: string;
   description: string;
   duration: string;
-  price: string;
   image: string;
+  features?: FeaturesType[];
+  price?: string | null;
+  link?: string | null;
+  overImageText?: string | null;
+}
+
+export const programsSection: { title: string } = {
+  title: "Related Programs",
 };
+
+// make sure slug is unique value
 
 export const programsData: ProgramType[] = [
   {
-    id: 1,
-    title: 'Hospital Management Diploma',
-    description: 'Develop essential leadership skills for the modern workplace.',
-    duration: '12 weeks',
-    price: '$1,999',
-    image: 'https://images.unsplash.com/photo-1525130413817-d45c1d127c42',
+    title: "Hospital Management Diploma",
+    slug: "hospital-management-diploma",
+    description:
+      "Develop essential leadership skills for the modern workplace.",
+    duration: "12 weeks",
+    image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
+    features: [
+      {
+        icon: BookOpen,
+        title: "8 Lectures",
+      },
+      {
+        icon: Target,
+        title: "Online-zoom live",
+      },
+      {
+        icon: Users,
+        title: "Certified Instructor",
+      },
+    ],
+    price: null,
+
+    // the url that the title of the program will go to - if link = null ->  nothing will happened
+    link: null,
+
+    // you can display a text over the image by adding text here
+    overImageText: null,
   },
   {
-    id: 2,
-    title: 'Healthcare Marketing Management Diploma',
-    description: 'Master the latest digital marketing strategies and tools.',
-    duration: '8 weeks',
-    price: '$1,499',
-    image: 'https://images.unsplash.com/photo-1525130413817-d45c1d127c42',
+    title: "Healthcare Marketing Management Diploma",
+    slug: "healthcare-marketing-management-diploma",
+    description: "Master the latest digital marketing strategies and tools.",
+    duration: "8 weeks",
+    image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
+    features: [
+      {
+        icon: BookOpen,
+        title: "8 Lectures",
+      },
+      {
+        icon: Target,
+        title: "Online-zoom live",
+      },
+      {
+        icon: Users,
+        title: "Certified Instructor",
+      },
+    ],
+    price: null,
+    link: null,
+    overImageText: null,
   },
   {
-    id: 3,
-    title: 'Healthcare Supply Chain Management Diploma',
-    description: 'Learn to make data-driven decisions for business growth.',
-    duration: '10 weeks',
-    price: '$1,799',
-    image: 'https://images.unsplash.com/photo-1525130413817-d45c1d127c42',
+    title: "Healthcare Supply Chain Management Diploma",
+    slug: "healthcare-supply-chain-management-diploma",
+    description: "Learn to make data-driven decisions for business growth.",
+    duration: "10 weeks",
+    image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
+    features: [
+      {
+        icon: BookOpen,
+        title: "8 Lectures",
+      },
+      {
+        icon: Target,
+        title: "Online-zoom live",
+      },
+      {
+        icon: Users,
+        title: "Certified Instructor",
+      },
+    ],
+    price: null,
+    link: null,
+    overImageText: null,
   },
   {
-    id: 3,
-    title: 'Healthcare Financial Management Diploma',
-    description: 'Learn to make data-driven decisions for business growth.',
-    duration: '10 weeks',
-    price: '$1,799',
-    image: 'https://images.unsplash.com/photo-1525130413817-d45c1d127c42',
+    title: "Healthcare Financial Management Diploma",
+    slug: "healthcare-financial-management-diploma",
+    description: "Learn to make data-driven decisions for business growth.",
+    duration: "10 weeks",
+    image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
+    features: [
+      {
+        icon: BookOpen,
+        title: "8 Lectures",
+      },
+      {
+        icon: Target,
+        title: "Online-zoom live",
+      },
+      {
+        icon: Users,
+        title: "Certified Instructor",
+      },
+    ],
+    price: null,
+    link: null,
+    overImageText: null,
   },
   {
-    id: 3,
-    title: 'Healthcare Strategic Management Diploma',
-    description: 'Learn to make data-driven decisions for business growth.',
-    duration: '10 weeks',
-    price: '$1,799',
-    image: 'https://images.unsplash.com/photo-1525130413817-d45c1d127c42',
+    title: "Healthcare Strategic Management Diploma",
+    slug: "healthcare-strategic-management-diploma",
+    description: "Learn to make data-driven decisions for business growth.",
+    duration: "10 weeks",
+    image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
+    features: [
+      {
+        icon: BookOpen,
+        title: "8 Lectures",
+      },
+      {
+        icon: Target,
+        title: "Online-zoom live",
+      },
+      {
+        icon: Users,
+        title: "Certified Instructor",
+      },
+    ],
+    price: null,
+    link: null,
+    overImageText: null,
   },
 ];
-
