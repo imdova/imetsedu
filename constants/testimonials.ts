@@ -1,12 +1,5 @@
-export type TestimonialType = {
-  id: string;
-  name: string;
-  role: string;
-  media?: string[];
-  path?: string[];
-  userPhoto?: string;
-  content?: string;
-};
+import { TestimonialType } from "@/types";
+
 export const testimonialsSection: { title: string } = {
   title: "Student Success Stories",
 };

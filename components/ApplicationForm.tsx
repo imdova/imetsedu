@@ -4,10 +4,16 @@ import CustomInput from "./CustomInput";
 import CustomSelect from "./CustomSelect";
 import PhoneNumberInput from "./phoneNumberInput";
 import { useState } from "react";
-import { sendDataToGoogleSheet } from "@/lib/google.sheet";
 import { useNotification } from "./NotificationComponent";
-import { FieldConfig, formFields, formSectionData } from "@/constants/form";
+import {
+  formFields,
+  formSectionData,
+  sendToMailerLite,
+} from "@/constants/form";
 import { getDefaultValues } from "@/util/form";
+import { sendDataToGoogleSheet } from "@/lib/google.sheet";
+import { sendDataToMailerLite } from "@/lib/mailer_lite";
+import { FieldConfig } from "@/types";
 
 interface DynamicModalProps {
   close: () => void;
@@ -26,7 +32,12 @@ const ApplicationForm: React.FC<DynamicModalProps> = ({ close }) => {
     setLoading(true);
     setError("");
     try {
-      const response = await sendDataToGoogleSheet(data);
+      let response;
+      if (sendToMailerLite) {
+        response = await sendDataToMailerLite(data);
+      } else {
+        response = await sendDataToGoogleSheet(data);
+      }
       if (response.success) {
         close();
         showNotification("success", formSectionData.successMessage);

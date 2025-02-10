@@ -1,4 +1,5 @@
-import { featuresData, FeaturesType } from "@/constants/fearures";
+import { featuresData } from "@/constants/fearures";
+import { FeaturesType } from "@/types";
 import React from "react";
 
 const Features = () => {

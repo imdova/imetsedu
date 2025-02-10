@@ -1,7 +1,5 @@
-export type CurriculumItemType = {
-  title: string;
-  content: string;
-};
+import { CurriculumItemType } from "@/types";
+
 export const curriculumSection: { title: string } = {
   title: "Program curriculum",
 };

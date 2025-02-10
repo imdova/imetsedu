@@ -1,3 +1,4 @@
+import { FeaturesType } from "@/types";
 import {
   BookOpen,
   Target,
@@ -6,12 +7,6 @@ import {
   Shield,
   LucideFileWarning,
 } from "lucide-react";
-
-export type FeaturesType = {
-  icon: React.ElementType;
-  title: string;
-  description?: string;
-};
 
 export const featuresData: FeaturesType[] = [
   {

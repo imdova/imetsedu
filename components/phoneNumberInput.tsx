@@ -3,6 +3,7 @@ import { CountryCode, parsePhoneNumberFromString } from "libphonenumber-js";
 import CustomInput from "./CustomInput";
 import SearchableSelectCountry from "./SearchableCountrySelect";
 import countries from "@/constants/countries.json";
+import { isValidEgyptianPhoneNumber } from "@/util/form";
 
 const formatCode = (code: string): string => {
   if (!code.startsWith("+")) {
@@ -45,8 +46,10 @@ const PhoneNumberInput: React.FC<CustomInputProps> = ({
       code as CountryCode,
     );
     if (phoneNumberObj && phoneNumberObj.isValid()) {
-      // setPhoneNumber(phoneNumberObj.formatInternational());
       setIsValid(true);
+      if (code === "EG" && !isValidEgyptianPhoneNumber(phoneNumberObj.number)) {
+        setIsValid(false);
+      }
       if (props.onChange) {
         const syntheticEvent = {
           target: { value: phoneNumberObj.number },

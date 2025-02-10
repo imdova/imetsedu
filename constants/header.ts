@@ -1,11 +1,4 @@
-export type HeaderType = {
-  content: string;
-  endDate: string;
-};
-type CtaButtonInHeader = {
-  buttonText: string;
-  buttonUrl?: string | null;
-};
+import { CtaButtonInHeader, HeaderType } from "@/types";
 
 // update the prices from here if you don't want to add a price
 export const pricesData = {

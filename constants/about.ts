@@ -1,9 +1,4 @@
-export type AboutType = {
-  name: string;
-  title: string;
-  image: string;
-  content: string;
-};
+import { AboutType } from "@/types";
 
 export const aboutData: AboutType = {
   name: "About IMETS",

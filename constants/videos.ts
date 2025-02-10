@@ -1,8 +1,5 @@
-export type VideType = {
-  id: string;
-  title: string;
-  videoUrl: string;
-};
+import { VideType } from "@/types";
+
 export const videoData: VideType[] = [
   {
     id: "1",

@@ -1,10 +1,4 @@
-export type InstructorType = {
-  sectionTitle: string;
-  name: string;
-  title: string;
-  image: string;
-  content: string;
-};
+import { InstructorType } from "@/types";
 
 export const instructor: InstructorType = {
   sectionTitle: "About the Instructor",

@@ -1,6 +1,6 @@
 import React, { forwardRef, useState, useEffect, useRef } from "react";
 import { ChevronDown, Check } from "lucide-react";
-import { Option } from "@/constants/form";
+import { Option } from "@/types";
 
 interface CustomSelectProps
   extends React.SelectHTMLAttributes<HTMLSelectElement> {

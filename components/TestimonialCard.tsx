@@ -1,6 +1,6 @@
-import { TestimonialType } from "@/constants/testimonials";
 import Image from "next/image";
 import Avatar from "./avatar";
+import { TestimonialType } from "@/types";
 
 export const TestimonialCard: React.FC<TestimonialType> = ({
   content,

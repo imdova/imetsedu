@@ -1,50 +1,31 @@
-export type FieldType =
-  | "text"
-  | "number"
-  | "phone"
-  | "email"
-  | "password"
-  | "date"
-  | "select"
-  | "checkbox";
+import { ApplicationFormData, FieldConfig } from "@/types";
 
-export interface Option {
-  value: string;
-  label: string;
-}
-
-export interface FieldConfig {
-  name: string;
-  label?: string;
-  type: FieldType;
-  required?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validation?: any;
-  gridProps?: {
-    xs?: number;
-    sm?: number;
-    md?: number;
-  };
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
-  options?: Option[];
-}
-
-export type ApplicationFormData = {
-  successMessage: string;
-  submitUrl?: string | null;
-  submitButtonText: string;
-  ctaButton: string;
-  ctaButtonUrl?: string | null;
-  title?: string;
-  content?: string;
-};
+//>>>>>>>>>>>/////// google sheets //////////<<<<<<<<<<<//
 
 // api section
-
 export const API_GOOGLE_SHEET = "https://sheetdb.io/api/v1/7wwkfi1cusx1s";
 
-// the data of the form
+//>>>>>>>>>>>/////// mailer lite //////////<<<<<<<<<<<//
 
+// this is a way to choose where to send your data in this case it will send to your mailer lite
+// if false data will be sent to google sheets
+export const sendToMailerLite = true; // true, false
+
+// here you need to add the api token givin from here https://dashboard.mailerlite.com/integrations/api  <<< ctrl + click
+export const MAILER_LITE_TOKEN = "ADD YOUR TOKEN HERE";
+
+//>>>>>>>>>>>/////// mailer lite additional data //////////<<<<<<<<<<<//
+
+// add groups id you want the subscribers to subscribe to it
+export const groups = [
+  // "4243829086487936",
+  // "14133878422767533",
+  // "31985378335392975",
+];
+
+//>>>>>>>>>>>/////// form Data //////////<<<<<<<<<<<//
+
+// the data of the form
 export const formSectionData: ApplicationFormData = {
   title: "Application Form",
   content: "Don't miss the offer",
@@ -62,32 +43,41 @@ export const formSectionData: ApplicationFormData = {
   ctaButtonUrl: null,
 };
 
+//>>>>>>>>>>>/////// form Fields //////////<<<<<<<<<<<//
+
 // form field section the name should be the table column header
 export const formFields: FieldConfig[] = [
   {
+    name: "email",
+    label: "Email Address",
+    type: "email", // Use only text, number, email, password, date, select, checkbox
+    inputProps: { placeholder: "Your Email Address" },
+    required: true,
+  },
+  {
     name: "name",
-    label: "Enter Your Name",
+    label: "Name",
     type: "text", // Use only text, number, email, password, date, select, checkbox
     inputProps: { placeholder: "Your Name" },
     required: true,
   },
   {
     name: "phone",
-    label: "Enter Your Phone Number",
+    label: "Phone Number",
     type: "phone", // Use only text, number, email, password, date, select, checkbox
     inputProps: { placeholder: "Your Phone Number" },
     required: true,
   },
   {
     name: "Specialty",
-    label: "Enter Your Specialty",
+    label: "Specialty",
     type: "select", // Use only text, number, email, password, date, select, checkbox
     options: [
       { label: "doctors", value: "doctors" },
       { label: "dentist", value: "dentists" },
       { label: "nurses", value: "nurses" },
     ],
-    inputProps: { placeholder: "Your specialty" },
+    inputProps: { placeholder: "Select Your specialty" },
     required: true,
   },
   // {

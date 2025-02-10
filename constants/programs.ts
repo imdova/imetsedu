@@ -1,17 +1,5 @@
+import { ProgramType } from "@/types";
 import { BookOpen, Target, Users } from "lucide-react";
-import { FeaturesType } from "./fearures";
-
-export interface ProgramType {
-  title: string;
-  slug: string;
-  description: string;
-  duration: string;
-  image: string;
-  features?: FeaturesType[];
-  price?: string | null;
-  link?: string | null;
-  overImageText?: string | null;
-}
 
 export const programsSection: { title: string } = {
   title: "Related Programs",
