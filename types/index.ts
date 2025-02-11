@@ -1,7 +1,11 @@
 // header types
 export type HeaderType = {
+  oldPrice: string;
+  newPrice: string;
   content: string;
   endDate: string;
+  buttonText: string;
+  buttonUrl?: string | null;
 };
 export type CtaButtonInHeader = {
   buttonText: string;
@@ -40,7 +44,7 @@ export type CurriculumItemType = {
 
 // features types
 export type FeaturesType = {
-  icon: React.ElementType;
+  icon: string;
   title: string;
   description?: string;
 };

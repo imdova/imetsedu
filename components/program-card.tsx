@@ -2,6 +2,8 @@ import { ProgramType } from "@/types";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { LucideProps } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 
 const ProgramCard: React.FC<ProgramType> = ({
   title,
@@ -46,10 +48,14 @@ const ProgramCard: React.FC<ProgramType> = ({
         {features && features.length > 0 && (
           <div className="flex flex-wrap gap-2">
             {features.map((item, index) => {
-              const Icon = item.icon;
+              const LucideIcon =
+                item.icon &&
+                (LucideIcons[
+                  item.icon as keyof typeof LucideIcons
+                ] as React.ComponentType<LucideProps>);
               return (
                 <div key={index} className="flex items-center">
-                  <Icon className="h-4 w-4 text-gold" />
+                  {LucideIcon && <LucideIcon className="h-4 w-4 text-gold" />}
                   <p className="text-xs text-gray-600">{item.title}</p>
                 </div>
               );

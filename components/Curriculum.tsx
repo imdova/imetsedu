@@ -1,23 +1,27 @@
 "use client";
 
-import { curriculumData, curriculumSection } from "@/constants/curriculum";
 import Collapsible from "./Collapsible";
 import WaveDiv from "./wavediv";
+import { CurriculumItemType } from "@/types";
 
-const Curriculum = () => {
+const Curriculum: React.FC<Block<CurriculumItemType[]>> = ({ title, data }) => {
+  if (!data) return null;
   return (
     <WaveDiv className="mb-4 fill-primary">
       <section className="w-full bg-primary p-4">
         <div className="container mx-auto px-2 md:px-4 lg:max-w-[1170px]">
-          <h2 className="mb-6 text-center text-2xl font-bold text-gold md:text-left">
-            {curriculumSection.title}
-          </h2>
+          {title && (
+            <h2 className="mb-6 text-center text-2xl font-bold text-gold md:text-left">
+              {title}
+            </h2>
+          )}
           <div className="space-y-4">
-            {curriculumData.map((item, index) => (
-              <Collapsible key={index} title={item.title}>
-                <p className="text-muted-foreground">{item.content}</p>
-              </Collapsible>
-            ))}
+            {data.length > 0 &&
+              data.map((item, index) => (
+                <Collapsible key={index} title={item.title}>
+                  <p className="text-muted-foreground">{item.content}</p>
+                </Collapsible>
+              ))}
           </div>
         </div>
       </section>

@@ -1,36 +1,28 @@
 import { FeaturesType } from "@/types";
-import {
-  BookOpen,
-  Target,
-  Users,
-  Clock,
-  Shield,
-  LucideFileWarning,
-} from "lucide-react";
 
 export const featuresData: FeaturesType[] = [
   {
-    icon: BookOpen,
+    icon: "BookOpen",
     title: "8 Lectures",
   },
   {
-    icon: Target,
+    icon: "Target",
     title: "Online-zoom live",
   },
   {
-    icon: Users,
+    icon: "Users",
     title: "Certified Instructor",
   },
   {
-    icon: Clock,
+    icon: "Clock",
     title: "1 Lecture weekly",
   },
   {
-    icon: Shield,
+    icon: "Shield",
     title: "International Certification",
   },
   {
-    icon: LucideFileWarning,
+    icon: "LucideFileWarning",
     title: "Student Portal",
   },
 ];

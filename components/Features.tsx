@@ -1,15 +1,18 @@
-import { featuresData } from "@/constants/fearures";
 import { FeaturesType } from "@/types";
 import React from "react";
+import { LucideProps } from "lucide-react";
+import * as LucideIcons from "lucide-react";
 
-const Features = () => {
+const Features: React.FC<Block<FeaturesType[]>> = ({ data }) => {
+  if (!data) return null;
   return (
     <section className="container mx-auto mb-4 flex items-center justify-center px-2 md:px-4 lg:max-w-[1170px]">
       <div>
         <div className="grid grid-cols-3 md:grid-cols-6">
-          {featuresData.map((feature, index) => (
-            <FeatureCard key={index} {...feature} index={index} />
-          ))}
+          {data.length > 0 &&
+            data.map((feature, index) => (
+              <FeatureCard key={index} {...feature} index={index} />
+            ))}
         </div>
       </div>
     </section>
@@ -24,11 +27,17 @@ const FeatureCard: React.FC<FeaturesType & { index: number }> = ({
   title,
   index,
 }) => {
-  const Icon = icon;
+  const LucideIcon = icon
+    ? (LucideIcons[
+        icon as keyof typeof LucideIcons
+      ] as React.ComponentType<LucideProps>)
+    : null;
   return (
     <React.Fragment>
       <div className="text-gray-800">
-        <Icon className="mx-auto mb-2 h-6 w-6 text-gold md:h-8 md:w-8" />
+        {LucideIcon && (
+          <LucideIcon className="mx-auto mb-2 h-6 w-6 text-gold md:h-8 md:w-8" />
+        )}
         <div className="text-center">
           <h3 className="text-xs text-black md:text-base">{title}</h3>
           {description && (

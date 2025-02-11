@@ -1,5 +1,4 @@
 import { ProgramType } from "@/types";
-import { BookOpen, Target, Users } from "lucide-react";
 
 export const programsSection: { title: string } = {
   title: "Related Programs",
@@ -17,15 +16,15 @@ export const programsData: ProgramType[] = [
     image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
     features: [
       {
-        icon: BookOpen,
+        icon: "BookOpen",
         title: "8 Lectures",
       },
       {
-        icon: Target,
+        icon: "Target",
         title: "Online-zoom live",
       },
       {
-        icon: Users,
+        icon: "Users",
         title: "Certified Instructor",
       },
     ],
@@ -45,15 +44,15 @@ export const programsData: ProgramType[] = [
     image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
     features: [
       {
-        icon: BookOpen,
+        icon: "BookOpen",
         title: "8 Lectures",
       },
       {
-        icon: Target,
+        icon: "Target",
         title: "Online-zoom live",
       },
       {
-        icon: Users,
+        icon: "Users",
         title: "Certified Instructor",
       },
     ],
@@ -69,15 +68,15 @@ export const programsData: ProgramType[] = [
     image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
     features: [
       {
-        icon: BookOpen,
+        icon: "BookOpen",
         title: "8 Lectures",
       },
       {
-        icon: Target,
+        icon: "Target",
         title: "Online-zoom live",
       },
       {
-        icon: Users,
+        icon: "Users",
         title: "Certified Instructor",
       },
     ],
@@ -93,15 +92,15 @@ export const programsData: ProgramType[] = [
     image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
     features: [
       {
-        icon: BookOpen,
+        icon: "BookOpen",
         title: "8 Lectures",
       },
       {
-        icon: Target,
+        icon: "Target",
         title: "Online-zoom live",
       },
       {
-        icon: Users,
+        icon: "Users",
         title: "Certified Instructor",
       },
     ],
@@ -117,15 +116,15 @@ export const programsData: ProgramType[] = [
     image: "https://images.unsplash.com/photo-1525130413817-d45c1d127c42",
     features: [
       {
-        icon: BookOpen,
+        icon: "BookOpen",
         title: "8 Lectures",
       },
       {
-        icon: Target,
+        icon: "Target",
         title: "Online-zoom live",
       },
       {
-        icon: Users,
+        icon: "Users",
         title: "Certified Instructor",
       },
     ],

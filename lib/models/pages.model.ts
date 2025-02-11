@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 
 const BlockSchema = new mongoose.Schema({
-  title: { type: String, required: true },
+  title: { type: String },
   type: { type: String, required: true }, // Example types: 'text', 'image', 'video', 'html', etc.
   data: { type: mongoose.Schema.Types.Mixed, required: true }, // Can store any kind of data
 });
