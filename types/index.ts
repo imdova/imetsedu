@@ -61,13 +61,13 @@ export interface Option {
   label: string;
 }
 
-export interface FieldConfig {
-  name: string;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export interface FieldConfig<T = Record<string, any>> {
+  name: keyof T; // Dynamically restricts to keys of T
   label?: string;
   type: FieldType;
   required?: boolean;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  validation?: any;
+  validation?: Record<string, unknown>;
   gridProps?: {
     xs?: number;
     sm?: number;

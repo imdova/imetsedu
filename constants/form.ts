@@ -69,7 +69,7 @@ export const formFields: FieldConfig[] = [
     required: true,
   },
   {
-    name: "Specialty",
+    name: "specialty",
     label: "Specialty",
     type: "select", // Use only text, number, email, password, date, select, checkbox
     options: [
