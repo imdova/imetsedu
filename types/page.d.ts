@@ -6,20 +6,22 @@ interface PageType {
   forms: FormType[];
 }
 
+type BlockType =
+  | "header"
+  | "stickyCTA"
+  | "hero"
+  | "features"
+  | "curriculum"
+  | "instructor"
+  | "testimonials"
+  | "VideoGrid"
+  | "about"
+  | "program";
+
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 interface Block<T = any> {
   id: string;
-  type:
-    | "header"
-    | "stickyCTA"
-    | "hero"
-    | "features"
-    | "curriculum"
-    | "instructor"
-    | "testimonials"
-    | "VideoGrid"
-    | "about"
-    | "program";
+  type: BlockType;
   title?: string;
   data?: T;
 }

@@ -53,7 +53,7 @@ const DynamicForm = <T extends Record<string, any>>({
       }}
     />
   );
-
+  // col-span-6 col-span-12 sm:col-span-6 md:col-span-4 lg:col-span-3
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
@@ -71,15 +71,19 @@ const DynamicForm = <T extends Record<string, any>>({
 
       <div className="mt-1 grid grid-cols-12 gap-4">
         {fields.map((field) => {
-          const xs = field.gridProps?.xs ?? 12;
-          const sm = field.gridProps?.sm ?? xs;
-          const md = field.gridProps?.md ?? sm;
-
+          const gridProps = field.gridProps ?? {};
+          const xs = gridProps.xs ?? 12;
+          const sm = gridProps.sm ?? xs;
+          const md = gridProps.md ?? sm;
+          const classNames = [
+            `col-span-${xs}`,
+            sm !== xs ? `sm:col-span-${sm}` : "",
+            md !== sm ? `md:col-span-${md}` : "",
+          ]
+            .filter(Boolean)
+            .join(" ");
           return (
-            <div
-              key={String(field.name)}
-              className={`col-span-12 sm:col-span-${sm} md:col-span-${md}`}
-            >
+            <div key={String(field.name)} className={classNames}>
               {renderField(field)}
             </div>
           );

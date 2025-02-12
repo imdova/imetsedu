@@ -1,12 +1,31 @@
+interface CustomInputProps
+  extends React.InputHTMLAttributes<HTMLInputElement | HTMLTextAreaElement> {
+  label?: string;
+  error?: string | boolean;
+  helperText?: string;
+  multiline?: boolean;
+  rows?: number;
+}
+
+type FieldType =
+  | "text"
+  | "number"
+  | "phone"
+  | "email"
+  | "password"
+  | "date"
+  | "select"
+  | "checkbox";
+
 interface FieldConfig<T> {
-  name: Path<T>;
-  type: string;
+  name: keyof T;
+  type: FieldType;
   label?: string;
   required?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   validation?: Record<string, any>;
   options?: Option[];
-  inputProps?: React.InputHTMLAttributes<HTMLInputElement>;
+  inputProps?: CustomInputProps;
   gridProps?: {
     xs?: number;
     sm?: number;

@@ -15,7 +15,7 @@ export const getDefaultValues = <T extends Record<string, unknown>>(
         defaults[field.name as keyof T] = 0 as T[keyof T];
         break;
       case "date":
-        defaults[field.name as keyof T] = null as T[keyof T];
+        defaults[field.name as keyof T] = "" as T[keyof T];
         break;
       default:
         defaults[field.name as keyof T] = "" as T[keyof T];
