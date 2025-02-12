@@ -6,6 +6,12 @@ export type HeaderType = {
   endDate: string;
   buttonText: string;
   buttonUrl?: string | null;
+  formId?: string | null;
+};
+export type StickyCTAType = {
+  buttonText: string;
+  buttonUrl?: string | null;
+  formId?: string | null;
 };
 export type CtaButtonInHeader = {
   buttonText: string;

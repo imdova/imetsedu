@@ -1,16 +1,16 @@
 "use client";
+import React, { useState } from "react";
+import Modal from "./Modal";
 import { ChevronRight } from "lucide-react";
 import Link from "next/link";
-import { useState } from "react";
-import Modal from "./Modal";
-import { HeaderType } from "@/types";
-import DynamicForm from "./form/dynamicForm";
-import { useNotification } from "./NotificationComponent";
+import { StickyCTAType } from "@/types";
 import { sendDataToMailerLite } from "@/lib/mailer_lite";
 import { sendDataToGoogleSheet } from "@/lib/google.sheet";
+import { useNotification } from "./NotificationComponent";
 import { useRouter } from "next/navigation";
+import DynamicForm from "./form/dynamicForm";
 
-const CallToAction: React.FC<{ data: HeaderType; forms: FormType[] }> = ({
+const StickyCTA: React.FC<Block<StickyCTAType> & { forms: FormType[] }> = ({
   data,
   forms,
 }) => {
@@ -62,13 +62,14 @@ const CallToAction: React.FC<{ data: HeaderType; forms: FormType[] }> = ({
       setLoading(false);
     }
   };
-
   return (
-    <div className="mb-4 bg-primary py-2">
-      <div className="flex items-center justify-center text-center text-sm">
+    <React.Fragment>
+      <div
+        className={`bg-background/80 sticky bottom-0 left-0 right-0 z-30 flex justify-end border-t p-4 backdrop-blur-sm transition-transform md:justify-end`}
+      >
         {data.buttonUrl ? (
           <Link
-            href={data.buttonUrl || "#"}
+            href={data.buttonUrl}
             className="hover:bg-gold/90 focus:ring-gold/50 flex items-center justify-center rounded-3xl bg-gold px-6 py-3 font-medium text-white shadow-sm transition-all duration-150 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2"
           >
             {data.buttonText} <ChevronRight className="ml-2 h-4 w-4" />
@@ -81,23 +82,23 @@ const CallToAction: React.FC<{ data: HeaderType; forms: FormType[] }> = ({
             {data.buttonText} <ChevronRight className="ml-2 h-4 w-4" />
           </button>
         )}
-        {formData && (
-          <Modal onClose={onClose} isOpen={isOpen}>
-            <DynamicForm
-              fields={formData.fields}
-              onClose={onClose}
-              onSubmit={onSubmit}
-              loading={loading}
-              error={error}
-              title={formData.title}
-              description={formData.content}
-              submitButtonText={formData.submitButtonText}
-            />
-          </Modal>
-        )}
       </div>
-    </div>
+      {formData && (
+        <Modal onClose={onClose} isOpen={isOpen}>
+          <DynamicForm
+            fields={formData.fields}
+            onClose={onClose}
+            onSubmit={onSubmit}
+            loading={loading}
+            error={error}
+            title={formData.title}
+            description={formData.content}
+            submitButtonText={formData.submitButtonText}
+          />
+        </Modal>
+      )}
+    </React.Fragment>
   );
 };
 
-export default CallToAction;
+export default StickyCTA;

@@ -1,7 +1,5 @@
 "use server";
 
-import { API_GOOGLE_SHEET } from "@/constants/form";
-
 interface Result<T = unknown> {
   success: boolean;
   message: string;
@@ -9,6 +7,7 @@ interface Result<T = unknown> {
 }
 export const sendDataToGoogleSheet = async (
   data: Record<string, unknown>,
+  googleSheetAPI: string,
 ): Promise<Result> => {
   try {
     const now = new Date();
@@ -17,7 +16,7 @@ export const sendDataToGoogleSheet = async (
     ).padStart(2, "0")}:${String(now.getDate()).padStart(2, "0")} , ${String(
       now.getHours(),
     ).padStart(2, "0")}:${String(now.getMinutes()).padStart(2, "0")}`;
-    const response = await fetch(API_GOOGLE_SHEET, {
+    const response = await fetch(googleSheetAPI, {
       method: "POST",
       headers: {
         Accept: "application/json",

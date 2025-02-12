@@ -7,7 +7,7 @@ const Page = async ({ params }: { params: Promise<{ slug: string }> }) => {
   const page = pages.find((x) => x.slug === slug);
   if (!page) return notFound();
 
-  return <PageView blocks={page.blocks as Block[]} />;
+  return <PageView {...page} />;
 };
 
 export default Page;

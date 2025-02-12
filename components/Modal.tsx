@@ -20,16 +20,19 @@ const Modal: React.FC<{
 
   if (!isOpen) return null;
   return (
-    <div className="fixed inset-0 top-0 z-30 flex h-screen w-screen items-center justify-center">
+    <div className="fixed inset-0 top-0 z-[9999] flex h-screen w-screen items-center justify-center">
       <div
         onClick={onClose}
         aria-hidden="true"
-        className={` fixed inset-0  h-screen w-screen bg-black/30 backdrop-blur-sm duration-700 `}
+        className={`fixed inset-0 h-screen w-screen bg-black/30 backdrop-blur-sm duration-700`}
       ></div>
-      <div className="m-8 flex max-h-full flex-col items-center w-full max-w-[600px] z-30 justify-between gap-2 rounded-3xl bg-white p-5">
-        <div className="relative w-full h-0">
-          <button onClick={onClose} className="p-2 absolute -top-4 -right-5 translate-x-1/2 -translate-y-1/2 bg-white rounded-full ">
-            <X className="w-4 h-4" />
+      <div className="z-30 m-8 flex max-h-full w-full max-w-[600px] flex-col items-center justify-between gap-2 rounded-3xl bg-white p-5">
+        <div className="relative h-0 w-full">
+          <button
+            onClick={onClose}
+            className="absolute -right-5 -top-4 -translate-y-1/2 translate-x-1/2 rounded-full bg-white p-2"
+          >
+            <X className="h-4 w-4" />
           </button>
         </div>
         {children}

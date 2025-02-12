@@ -2,6 +2,7 @@
 import Features from "@/components/Features";
 import Header from "@/components/Header";
 import Hero from "@/components/hero";
+import StickyCTA from "@/components/StickyCTA";
 import { Metadata } from "next";
 import dynamic from "next/dynamic";
 
@@ -17,17 +18,14 @@ const Programs = dynamic(() => import("@/components/programs"));
 // const ApplySection = dynamic(() => import("@/components/apply"));
 // const CallToAction = dynamic(() => import("@/components/CallToAction"));
 
-// Props interface for the DynamicPage component
-interface DynamicPageProps {
-  blocks: Block[];
-}
-
-const DynamicPage: React.FC<DynamicPageProps> = ({ blocks }) => {
+const DynamicPage: React.FC<PageType> = ({ blocks, forms }) => {
   // Helper function to render the correct component based on block type
   const renderComponent = (block: Block): React.ReactNode => {
     switch (block.type) {
       case "header":
-        return <Header key={block.id} {...block} />;
+        return <Header key={block.id} {...block} forms={forms} />;
+      case "stickyCTA":
+        return <StickyCTA key={block.id} {...block} forms={forms} />;
       case "hero":
         return <Hero key={block.id} {...block} />;
       case "features":
@@ -50,9 +48,8 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ blocks }) => {
   };
 
   // Filter blocks into main content and curriculum+ sections
-  const headerBlock = blocks.find((block) => block.type === "header");
   const mainBlocks = blocks.filter((block) =>
-    ["hero", "features"].includes(block.type),
+    ["header", "hero", "features"].includes(block.type),
   );
 
   const contentBlocks = blocks.filter(
@@ -61,8 +58,6 @@ const DynamicPage: React.FC<DynamicPageProps> = ({ blocks }) => {
 
   return (
     <div>
-      {/* Render header if it exists */}
-      {headerBlock && <Header {...headerBlock} />}
       <main>
         {/* Render main blocks (hero and features) */}
         {mainBlocks.map((block) => renderComponent(block))}

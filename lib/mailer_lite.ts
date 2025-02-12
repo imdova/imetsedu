@@ -1,7 +1,5 @@
 "use server";
 
-import { groups, MAILER_LITE_TOKEN } from "@/constants/form";
-
 interface Result<T = unknown> {
   success: boolean;
   message: string;
@@ -10,9 +8,12 @@ interface Result<T = unknown> {
 
 export const sendDataToMailerLite = async (
   data: Record<string, unknown>,
+  mailerID: string,
+  groups?: string[],
 ): Promise<Result> => {
+  console.log("🚀 ~ mailerID:", mailerID);
   const { email, ...fields } = data;
-  const token = process.env.MAILER_LITE_TOKEN || MAILER_LITE_TOKEN;
+  console.log("🚀 ~ email:", email);
 
   try {
     const response = await fetch(
@@ -22,12 +23,11 @@ export const sendDataToMailerLite = async (
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
-          Authorization: `Bearer ${token}`,
         },
         body: JSON.stringify({
           email,
           fields,
-          groups,
+          groups: groups || [],
         }),
       },
     );

@@ -9,7 +9,7 @@ import { programsData } from "./programs";
 import { testimonialsData1, testimonialsData2 } from "./testimonials";
 import { videoData } from "./videos";
 
-export const pages = [
+export const pages: PageType[] = [
   {
     title: "healthcare hr management diploma",
     slug: "healthcare-hr-management-diploma",
@@ -17,7 +17,7 @@ export const pages = [
       {
         id: "1",
         type: "header",
-        data: headerData,
+        data: { ...headerData, formId: "1" },
       },
       {
         id: "2",
@@ -68,18 +68,38 @@ export const pages = [
         type: "program",
         data: programsData,
       },
+      {
+        id: "11",
+        type: "stickyCTA",
+        data: { ...headerData, formId: "2" },
+      },
     ],
     forms: [
       {
         id: "1",
-        title: "Application Form",
+        title: "Submit the form google",
         content: "Don't miss the offer",
         successMessage: "Thank you for submitting our form ",
-        submitUrl: null,
         submitButtonText: "Submit Now",
-        ctaButton: "Apply Now",
-        ctaButtonUrl: null,
         fields: formFields,
+        submitTo: "googleSheets",
+        mailerID: "", // the id of mailer lite > string | null
+        googleSheetAPI: "https://sheetdb.io/api/v1/7wwkfi1cusx1s", // the api of google sheets string | null
+        groups: [], // the ids of the groups string[]
+        afterSubmitRedirect: "/",
+      },
+      {
+        id: "2",
+        title: "Application Form mailer ",
+        content: "Don't miss the offer",
+        successMessage: "Thank you for submitting our form ",
+        submitButtonText: "Submit Now",
+        fields: formFields,
+        submitTo: "mailerLite",
+        mailerID: "any", // the id of mailer lite > string | null
+        googleSheetAPI: "", // the api of google sheets string | null
+        groups: [], // the ids of the groups string[]
+        afterSubmitRedirect: "/jobs",
       },
     ],
   },

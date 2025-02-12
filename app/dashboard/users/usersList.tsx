@@ -14,7 +14,7 @@ import { useState } from "react";
 // email
 // password
 // image
-const editFields: FieldConfig[] = [
+const editFields: FieldConfig<UserType>[] = [
   {
     name: "name",
     label: "Name",
@@ -84,7 +84,7 @@ const UsersList: React.FC<{ users: UserType[] }> = ({ users }) => {
   return (
     <div className="flex flex-col gap-3">
       <Modal isOpen={!!isEdit} onClose={() => setEdit(null)}>
-        <DynamicForm
+        <DynamicForm<UserType>
           fields={editFields}
           onClose={() => setEdit(null)}
           onSubmit={handleEditSubmit}
@@ -94,7 +94,7 @@ const UsersList: React.FC<{ users: UserType[] }> = ({ users }) => {
         />
       </Modal>
       <Modal isOpen={!!isDelete} onClose={() => setDelete(null)}>
-        <DynamicForm
+        <DynamicForm<UserType>
           fields={[]}
           onClose={() => setDelete(null)}
           onSubmit={handleDeleteSubmit}

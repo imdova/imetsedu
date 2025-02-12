@@ -11,7 +11,7 @@ export async function authenticateUser(
     return {
       id: user._id,
       name: user.name,
-      image: user.image,
+      image: user.image ?? null,
       email: user.email,
     };
   } catch (error) {

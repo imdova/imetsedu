@@ -5,7 +5,10 @@ import React, { useState, useEffect } from "react";
 import CallToAction from "./CallToAction";
 import { HeaderType } from "@/types";
 
-const Header: React.FC<Block<HeaderType>> = ({ data }) => {
+const Header: React.FC<Block<HeaderType> & { forms: FormType[] }> = ({
+  data,
+  forms,
+}) => {
   const [timeLeft, setTimeLeft] = useState({
     days: 0,
     hours: 0,
@@ -77,7 +80,7 @@ const Header: React.FC<Block<HeaderType>> = ({ data }) => {
           </div>
         </div>
       </header>
-      <CallToAction data={data} />
+      <CallToAction data={data} forms={forms} />
     </React.Fragment>
   );
 };
