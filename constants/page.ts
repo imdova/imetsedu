@@ -13,6 +13,7 @@ export const pages: PageType[] = [
   {
     title: "healthcare hr management diploma",
     slug: "healthcare-hr-management-diploma",
+    isActive: false,
     blocks: [
       {
         id: "1",

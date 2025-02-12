@@ -1,6 +1,7 @@
 interface PageType {
   title: string;
   slug: string;
+  isActive: boolean;
   blocks: Block[];
   forms: FormType[];
 }

@@ -5,7 +5,7 @@ import { useNotification } from "../NotificationComponent";
 interface SwitchProps<T> {
   checkKey: keyof T;
   item: T;
-  action?: (item: T) => Promise<Result>;
+  action?: (item: T) => Promise<Result<T>>;
 }
 
 export default function Switch<T>({ checkKey, item, action }: SwitchProps<T>) {
@@ -21,7 +21,7 @@ export default function Switch<T>({ checkKey, item, action }: SwitchProps<T>) {
   }, [initialChecked]);
 
   return (
-    <td className="whitespace-nowrap px-6 py-4">
+    <div className="whitespace-nowrap px-6 py-4">
       <button
         onClick={async () => {
           if (action) {
@@ -35,12 +35,12 @@ export default function Switch<T>({ checkKey, item, action }: SwitchProps<T>) {
             }
           }
         }}
-        className={` ${action ? "" : "pointer-events-none"} ${checked ? "bg-green-500" : "bg-red-500"} h-6 w-12 rounded-full p-1 duration-300`}
+        className={`${checked ? "bg-green-500" : "bg-red-500"} h-[16px] w-[32px] rounded-full p-[3px] duration-300`}
       >
         <div
-          className={`${checked ? "translate-x-0" : "-translate-x-6"} h-4 w-4 rounded-full bg-white duration-300`}
+          className={`${checked ? "translate-x-0" : "translate-x-[16px]"} h-[10px] w-[10px] rounded-full bg-white duration-300`}
         ></div>
       </button>
-    </td>
+    </div>
   );
 }

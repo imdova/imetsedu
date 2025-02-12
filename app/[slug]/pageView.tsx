@@ -1,4 +1,3 @@
-"use client";
 import Features from "@/components/Features";
 import Header from "@/components/Header";
 import Hero from "@/components/hero";
@@ -18,7 +17,8 @@ const Programs = dynamic(() => import("@/components/programs"));
 // const ApplySection = dynamic(() => import("@/components/apply"));
 // const CallToAction = dynamic(() => import("@/components/CallToAction"));
 
-const DynamicPage: React.FC<PageType> = ({ blocks, forms }) => {
+const DynamicPage: React.FC<{ page: PageType }> = ({ page }) => {
+  const { blocks, forms } = page;
   // Helper function to render the correct component based on block type
   const renderComponent = (block: Block): React.ReactNode => {
     switch (block.type) {

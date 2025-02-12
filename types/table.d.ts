@@ -11,5 +11,5 @@ interface Column<T> {
     | "input";
   inputProps?: CustomFormeElementProps;
   RowAction?: (props: { item: T }) => JSX.Element;
-  action?: (item: T) => Promise<Result>;
+  action?: (item: T) => Promise<Result<T>>;
 }

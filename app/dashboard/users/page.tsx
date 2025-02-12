@@ -1,6 +1,6 @@
+import UserHeader from "@/components/users/userHeader";
+import UsersList from "@/components/users/usersList";
 import { getUsers } from "@/lib/actions/user/user.actions";
-import UsersList from "./usersList";
-import UserHeader from "./userHeader";
 
 const page = async () => {
   const users = await getUsers();
